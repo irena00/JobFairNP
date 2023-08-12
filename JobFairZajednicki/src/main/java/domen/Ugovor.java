@@ -5,17 +5,64 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-
+/**
+ * Represents a contract (Ugovor) in the system. 
+ * 
+ * A contract associates with a meeting, a company, and may have multiple contract items (stavkeUgovora).
+ * This class extends the AbstractDomainObject class and implements methods for
+ * database interaction.
+ * 
+ * @see AbstractDomainObject
+ * @author Irena Randjelovic
+ */
 public class Ugovor extends AbstractDomainObject {
 
+	/**
+	 * The unique identifier for the contract.
+	 */
     private Long ugovorID;
+    
+    /**
+     * The name of the association involved in the contract.
+     */
     private String udruzenje;
+    
+    /**
+     * The total cost of the contract.
+     */
     private double ukupnaCena;
+    
+    /**
+     * The date when the contract was concluded.
+     */
     private Date datumZakljucenja;
+    
+    /**
+     * The meeting associated with the contract.
+     */
     private Sastanak sastanak;
+    
+    /**
+     * 	The package associated with the contract.
+     */
     private Paket paket;
+    
+    /**
+     * The list of contract items (stavkeUgovora) associated with the contract.
+     */
     private ArrayList<StavkaUgovora> stavkeUgovora;
 
+    /**
+     * Constructs a new Ugovor object with the specified attributes.
+     * 
+     * @param ugovorID The unique identifier for the contract.
+     * @param udruzenje The name of the association involved in the contract.
+     * @param ukupnaCena The total cost of the contract.
+     * @param datumZakljucenja The date when the contract was concluded.
+     * @param sastanak The meeting associated with the contract.
+     * @param paket The package associated with the company and contract.
+     * @param stavkeUgovora The list of contract items (stavkeUgovora) associated with the contract.
+     */
     public Ugovor(Long ugovorID, String udruzenje, double ukupnaCena, Date datumZakljucenja, Sastanak sastanak, Paket paket, ArrayList<StavkaUgovora> stavkeUgovora) {
         this.ugovorID = ugovorID;
         this.udruzenje = udruzenje;
@@ -26,6 +73,9 @@ public class Ugovor extends AbstractDomainObject {
         this.stavkeUgovora = stavkeUgovora;
     }
 
+    /**
+     * Default constructor. Creates an empty Ugovor object.
+     */
     public Ugovor() {
     }
 
@@ -113,58 +163,128 @@ public class Ugovor extends AbstractDomainObject {
         return " WHERE S.SASTANAKID = " + sastanak.getSastanakID();
     }
 
+    /**
+     * Gets the unique identifier of the contract (ugovorID).
+     * 
+     * @return The ugovorID of the contract.
+     */
     public Long getUgovorID() {
         return ugovorID;
     }
 
+    /**
+     * Sets the unique identifier of the contract (ugovorID).
+     * 
+     * @param ugovorID The ugovorID to set for the contract.
+     */
     public void setUgovorID(Long ugovorID) {
         this.ugovorID = ugovorID;
     }
 
+    /**
+     * Gets the name of the association involved in the contract.
+     * 
+     * @return The name of the association.
+     */
     public String getUdruzenje() {
         return udruzenje;
     }
 
+    /**
+     * Sets the name of the association involved in the contract.
+     * 
+     * @param udruzenje The name of the association to set.
+     */
     public void setUdruzenje(String udruzenje) {
         this.udruzenje = udruzenje;
     }
 
+    /**
+     * Gets the total cost of the contract.
+     * 
+     * @return The total cost of the contract.
+     */
     public double getUkupnaCena() {
         return ukupnaCena;
     }
 
+    /**
+     * Sets the total cost of the contract.
+     * 
+     * @param ukupnaCena The total cost to set for the contract.
+     */
     public void setUkupnaCena(double ukupnaCena) {
         this.ukupnaCena = ukupnaCena;
     }
 
+    /**
+     * Gets the date when the contract was concluded.
+     * 
+     * @return The date of contract conclusion.
+     */
     public Date getDatumZakljucenja() {
         return datumZakljucenja;
     }
 
+    /**
+     * Sets the date when the contract was concluded.
+     * 
+     * @param datumZakljucenja The date of contract conclusion to set.
+     */
     public void setDatumZakljucenja(Date datumZakljucenja) {
         this.datumZakljucenja = datumZakljucenja;
     }
 
+    /**
+     * Gets the meeting associated with the contract.
+     * 
+     * @return The Sastanak (meeting) object associated with the contract.
+     */
     public Sastanak getSastanak() {
         return sastanak;
     }
 
+    /**
+     * Sets the meeting associated with the contract.
+     * 
+     * @param sastanak The Sastanak (meeting) object to associate with the contract.
+     */
     public void setSastanak(Sastanak sastanak) {
         this.sastanak = sastanak;
     }
 
+    /**
+     * Gets the package associated with the contract.
+     * 
+     * @return The Paket (package) object associated with the contract.
+     */
     public Paket getPaket() {
         return paket;
     }
 
+    /**
+     * Sets the package associated with the contract.
+     * 
+     * @param paket The Paket (package) object to associate with the contract.
+     */
     public void setPaket(Paket paket) {
         this.paket = paket;
     }
 
+    /**
+     * Gets the list of contract items (stavkeUgovora) associated with the contract.
+     * 
+     * @return The list of StavkaUgovora objects associated with the contract.
+     */
     public ArrayList<StavkaUgovora> getStavkeUgovora() {
         return stavkeUgovora;
     }
 
+    /**
+     * Gets the list of contract items (stavkeUgovora) associated with the contract.
+     * 
+     * @return The list of StavkaUgovora objects associated with the contract.
+     */
     public void setStavkeUgovora(ArrayList<StavkaUgovora> stavkeUgovora) {
         this.stavkeUgovora = stavkeUgovora;
     }

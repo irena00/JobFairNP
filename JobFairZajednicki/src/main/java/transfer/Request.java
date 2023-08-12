@@ -2,14 +2,16 @@ package transfer;
 
 import java.io.Serializable;
 
-public class KlijentskiZahtev implements Serializable{
+public class Request implements Serializable{
+
 	private int operacija;
+
     private Object data;
 
-    public KlijentskiZahtev() {
+    public Request() {
     }
 
-    public KlijentskiZahtev(int operation, Object data) {
+    public Request(int operation, Object data) {
         this.operacija = operation;
         this.data = data;
     }

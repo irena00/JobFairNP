@@ -4,15 +4,15 @@ import java.io.Serializable;
 
 import transferUtil.ResponseStatus;
 
-public class ServerskiOdgovor implements Serializable{
+public class Response implements Serializable{
 	private Object data;
     private Exception exc;
     private ResponseStatus responseStatus;
 
-    public ServerskiOdgovor() {
+    public Response() {
     }
 
-    public ServerskiOdgovor(Object data, Exception exc, ResponseStatus responseStatus) {
+    public Response(Object data, Exception exc, ResponseStatus responseStatus) {
         this.data = data;
         this.exc = exc;
         this.responseStatus = responseStatus;

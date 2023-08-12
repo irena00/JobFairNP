@@ -1,4 +1,4 @@
-package transfer.util;
+package transferUtil;
 
 public interface Operation {
 	public static final int LOGIN = 0;

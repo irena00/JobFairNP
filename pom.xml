@@ -8,5 +8,7 @@
   <description>Root Maven Project</description>
   <modules>
   	<module>JobFairZajednicki</module>
+  	<module>JobFairKlijent</module>
+  	<module>JobFairServer</module>
   </modules>
 </project>

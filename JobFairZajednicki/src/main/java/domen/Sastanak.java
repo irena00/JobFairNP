@@ -9,16 +9,43 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- *
- * @author Korisnik
+ * Sastanak class represents a meeting in the system.
+ * 
+ * Extends the AbstractDomainObject {@link AbstractDomainObject}. It represents meeting between Company and our administrator.
+ * 
+ * @see AbstractDomainObject
+ * @author Irena Randjelovic
  */
 public class Sastanak extends AbstractDomainObject {
 
+	/**
+	 * The ID of the meeting.
+	 */
     private Long sastanakID;
+    
+    /**
+     * The date and time of the meeting.
+     */
     private Date datumVreme;
+    
+    /**
+     * The topic of the meeting.
+     */
     private String tema;
+    
+    /**
+     * The location of the meeting.
+     */
     private String lokacija;
+    
+    /**
+     * The company associated with the meeting.
+     */
     private Kompanija kompanija;
+    
+    /**
+     * The administrator organizing the meeting.
+     */
     private Administrator administrator;
 
     @Override
@@ -27,6 +54,13 @@ public class Sastanak extends AbstractDomainObject {
         return hash;
     }
 
+    /**
+     * Checks if this Sastanak is equal to another object. Two Sastanak objects are
+     * considered equal if their sastanakID attributes are equal.
+     *
+     * @param obj The object to compare with this Sastanak.
+     * @return true if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -45,12 +79,28 @@ public class Sastanak extends AbstractDomainObject {
         return true;
     }
 
+    /**
+     * Returns a string representation of the Sastanak, including the company and
+     * the formatted date and time of the meeting.
+     *
+     * @return The string representation of the Sastanak.
+     */
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         return kompanija + " [Datum: " + sdf.format(datumVreme) + "]";
     }
 
+    /**
+     * Creates a new instance of the Sastanak class with specified attributes.
+     *
+     * @param sastanakID     The ID of the meeting.
+     * @param datumVreme     The date and time of the meeting.
+     * @param tema           The topic of the meeting.
+     * @param lokacija       The location of the meeting.
+     * @param kompanija      The company associated with the meeting.
+     * @param administrator   The administrator organizing the meeting.
+     */
     public Sastanak(Long sastanakID, Date datumVreme, String tema, String lokacija, Kompanija kompanija, Administrator administrator) {
         this.sastanakID = sastanakID;
         this.datumVreme = datumVreme;
@@ -60,9 +110,13 @@ public class Sastanak extends AbstractDomainObject {
         this.administrator = administrator;
     }
 
+    /**
+     * Creates a new instance of the Sastanak class.
+     */
     public Sastanak() {
     }
 
+    // Abstract methods implementation
     @Override
     public String nazivTabele() {
         return " Sastanak ";
@@ -136,50 +190,111 @@ public class Sastanak extends AbstractDomainObject {
         return "";
     }
 
+    /**
+     * Get the ID of the meeting.
+     *
+     * @return The ID of the meeting.
+     */
     public Long getSastanakID() {
         return sastanakID;
     }
 
+    /**
+     * Set the ID of the meeting.
+     *
+     * @param sastanakID The ID to set for the meeting.
+     */
     public void setSastanakID(Long sastanakID) {
         this.sastanakID = sastanakID;
     }
 
+    /**
+     * Get the date and time of the meeting.
+     *
+     * @return The date and time of the meeting.
+     */
     public Date getDatumVreme() {
         return datumVreme;
     }
 
+    /**
+     * Set the date and time of the meeting.
+     *
+     * @param datumVreme The date and time to set for the meeting.
+     */
     public void setDatumVreme(Date datumVreme) {
         this.datumVreme = datumVreme;
     }
 
+    /**
+     * Get the topic of the meeting.
+     *
+     * @return The topic of the meeting.
+     */
     public String getTema() {
         return tema;
     }
 
+    /**
+     * Set the topic of the meeting.
+     *
+     * @param tema The topic to set for the meeting.
+     */
     public void setTema(String tema) {
         this.tema = tema;
     }
 
+    /**
+     * Get the location of the meeting.
+     *
+     * @return The location of the meeting.
+     */
     public String getLokacija() {
         return lokacija;
     }
 
+    /**
+     * Set the location of the meeting.
+     *
+     * @param lokacija The location to set for the meeting.
+     */
     public void setLokacija(String lokacija) {
         this.lokacija = lokacija;
     }
 
+    /**
+     * Get the company associated with the meeting.
+     *
+     * @return The company associated with the meeting.
+     */
     public Kompanija getKompanija() {
         return kompanija;
     }
 
+    /**
+     * Set the company associated with the meeting.
+     *
+     * @param kompanija The company to set for the meeting.
+     */
     public void setKompanija(Kompanija kompanija) {
         this.kompanija = kompanija;
     }
+
+    /**
+     * Get the administrator organizing the meeting.
+     *
+     * @return The administrator organizing the meeting.
+     */
 
     public Administrator getAdministrator() {
         return administrator;
     }
 
+    /**
+     * Set the administrator organizing the meeting.
+     *
+     * @param administrator The administrator to set for the meeting.
+     */
     public void setAdministrator(Administrator administrator) {
         this.administrator = administrator;
     }

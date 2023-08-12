@@ -1,11 +1,11 @@
-transfer\ServerskiOdgovor.class
 domen\StavkaUgovora.class
 domen\ClanCRTima.class
-transfer\KlijentskiZahtev.class
 domen\AbstractDomainObject.class
+transfer\Response.class
 domen\Sastanak.class
 domen\Administrator.class
 domen\Kompanija.class
+transfer\Request.class
 domen\Ugovor.class
 transferUtil\ResponseStatus.class
 domen\Paket.class

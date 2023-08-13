@@ -12,11 +12,22 @@ import java.util.Date;
 import so.AbstractSO;
 
 /**
- *
- * @author PC
+ * This class represents a specific implementation of the AbstractSO (Abstract Service Object) pattern.
+ * 
+ * It is designed for updating an existing Sastanak (meeting) instance in the database.
+ * 
+ * @see AbstractSO
+ * @author Irena Randjelovic
  */
 public class SOUpdateSastanak extends AbstractSO {
 
+	/**
+     * Validates that the provided AbstractDomainObject is an instance of the Sastanak class
+     * and that the meeting's date and time are in the future.
+     *
+     * @param ado The AbstractDomainObject to be validated, expected to be a Sastanak instance.
+     * @throws Exception if the provided object is not an instance of Sastanak or if the meeting's date and time are not in the future.
+     */
     @Override
     protected void validate(AbstractDomainObject ado) throws Exception {
         if (!(ado instanceof Sastanak)) {
@@ -31,6 +42,12 @@ public class SOUpdateSastanak extends AbstractSO {
 
     }
 
+    /**
+     * Executes the operation to update an existing Sastanak instance in the database.
+     *
+     * @param ado The AbstractDomainObject representing the Sastanak object to be updated in the database.
+     * @throws Exception if there's an error during the database update process.
+     */
     @Override
     protected void execute(AbstractDomainObject ado) throws Exception {
         DBBroker.getInstance().update(ado);

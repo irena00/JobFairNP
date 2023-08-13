@@ -11,11 +11,20 @@ import domen.Sastanak;
 import so.AbstractSO;
 
 /**
- *
- * @author PC
+ * This class represents a specific implementation of the AbstractSO (Abstract Service Object) pattern.
+ * It is designed for deleting an existing Sastanak (meeting) instance from the database.
+ * 
+ * @see AbstractSO
+ * @author Irena Randjelovic
  */
 public class SODeleteSastanak extends AbstractSO {
 
+	 /**
+     * Validates that the provided AbstractDomainObject is an instance of the Sastanak class.
+     *
+     * @param ado The AbstractDomainObject to be validated, expected to be a Sastanak instance.
+     * @throws Exception if the provided object is not an instance of Sastanak.
+     */
     @Override
     protected void validate(AbstractDomainObject ado) throws Exception {
         if (!(ado instanceof Sastanak)) {
@@ -23,6 +32,12 @@ public class SODeleteSastanak extends AbstractSO {
         }
     }
 
+    /**
+     * Executes the operation to delete an existing Sastanak instance from the database.
+     *
+     * @param ado The AbstractDomainObject representing the Sastanak object to be deleted from the database.
+     * @throws Exception if there's an error during the database deletion process.
+     */
     @Override
     protected void execute(AbstractDomainObject ado) throws Exception {
         DBBroker.getInstance().delete(ado);

@@ -13,11 +13,22 @@ import java.util.Date;
 import so.AbstractSO;
 
 /**
- *
- * @author PC
+ * This class represents a specific implementation of the AbstractSO (Abstract Service Object) pattern.
+ * 
+ * It is designed for updating an existing Ugovor (contract) instance in the database, including its associated stavke (items).
+ * 
+ * @see AbstractSO
+ * @author Irena Randjelovic	
  */
 public class SOUpdateUgovor extends AbstractSO {
 
+	/**
+     * Validates that the provided AbstractDomainObject is an instance of the Ugovor class
+     * and enforces specific business rules for contract update.
+     *
+     * @param ado The AbstractDomainObject to be validated, expected to be a Ugovor instance.
+     * @throws Exception if the provided object is not an instance of Ugovor or if the contract does not meet the specified business rules.
+     */
     @Override
     protected void validate(AbstractDomainObject ado) throws Exception {
         if (!(ado instanceof Ugovor)) {
@@ -42,17 +53,21 @@ public class SOUpdateUgovor extends AbstractSO {
 
     }
 
+    /**
+     * Executes the operation to update an existing Ugovor instance in the database,
+     * including updating associated stavke (items) and handling the addition and deletion of stavke.
+     *
+     * @param ado The AbstractDomainObject representing the Ugovor object to be updated in the database.
+     * @throws Exception if there's an error during the database update process or handling stavke.
+     */
     @Override
     protected void execute(AbstractDomainObject ado) throws Exception {
         // izmenimo ugovor
         DBBroker.getInstance().update(ado);
-
         Ugovor u = (Ugovor) ado;
+        
         // obrisemo stare stavke
-        // sledeca linija koda izvrsava naredbu
-        // DELETE FROM STAVKAUGOVORA WHERE UGOVORID = nasID
-        // cime se brisu SVE stavke naseg ugovora ODJEDNOM !!!
-        DBBroker.getInstance().delete(u.getStavkeUgovora().get(0));
+               DBBroker.getInstance().delete(u.getStavkeUgovora().get(0));
 
         // dodamo nove
         for (StavkaUgovora stavkaUgovora : u.getStavkeUgovora()) {

@@ -15,11 +15,22 @@ import java.util.Date;
 import so.AbstractSO;
 
 /**
- *
- * @author PC
+ * This class represents a specific implementation of the AbstractSO (Abstract Service Object) pattern.
+ * 
+ * It is designed for adding a new Ugovor (contract) instance to the database.
+ * 
+ * @see AbstractSO
+ * @author Irena Randjelovic
  */
 public class SOAddUgovor extends AbstractSO {
 
+	/**
+     * Validates that the provided AbstractDomainObject is an instance of the Ugovor class
+     * and enforces specific business rules for contract creation.
+     *
+     * @param ado The AbstractDomainObject to be validated, expected to be a Ugovor instance.
+     * @throws Exception if the provided object is not an instance of Ugovor or if the contract does not meet the specified business rules.
+     */
     @Override
     protected void validate(AbstractDomainObject ado) throws Exception {
         if (!(ado instanceof Ugovor)) {
@@ -43,7 +54,14 @@ public class SOAddUgovor extends AbstractSO {
         }
 
     }
-
+    
+    /**
+     * Executes the operation to insert a new Ugovor instance into the database,
+     * including associated stavke (items) with generated keys.
+     *
+     * @param ado The AbstractDomainObject representing the Ugovor object to be added to the database.
+     * @throws Exception if there's an error during the database insertion process or setting generated keys.
+     */
     @Override
     protected void execute(AbstractDomainObject ado) throws Exception {
 

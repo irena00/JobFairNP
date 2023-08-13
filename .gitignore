@@ -1,0 +1,10 @@
+# Ignore compiled binaries
+target/
+
+# Ignore temporary files
+*.tmp
+
+# Ignore IDE-specific files (Eclipse, IntelliJ, etc.)
+.classpath
+.project
+.settings/

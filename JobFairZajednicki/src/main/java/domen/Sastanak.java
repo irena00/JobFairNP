@@ -94,14 +94,33 @@ public class Sastanak extends AbstractDomainObject {
     /**
      * Creates a new instance of the Sastanak class with specified attributes.
      *
-     * @param sastanakID     The ID of the meeting.
-     * @param datumVreme     The date and time of the meeting.
-     * @param tema           The topic of the meeting.
-     * @param lokacija       The location of the meeting.
-     * @param kompanija      The company associated with the meeting.
-     * @param administrator   The administrator organizing the meeting.
+     * @param sastanakID     The ID of the meeting. Must be non-null and non-negative.
+     * @param datumVreme     The date and time of the meeting. Must be non-null.
+     * @param tema           The topic of the meeting. Must not be null or blank.
+     * @param lokacija       The location of the meeting. Must not be null or blank.
+     * @param kompanija      The company associated with the meeting. Must not be null.
+     * @param administrator   The administrator organizing the meeting. Must not be null.
+     * @throws IllegalArgumentException If any of the provided attributes are invalid.
      */
     public Sastanak(Long sastanakID, Date datumVreme, String tema, String lokacija, Kompanija kompanija, Administrator administrator) {
+        if (sastanakID == null || sastanakID < 0) {
+            throw new IllegalArgumentException("SastanakID cannot be null or negative.");
+        }
+        if (datumVreme == null) {
+            throw new IllegalArgumentException("DatumVreme cannot be null.");
+        }
+        if (tema == null || tema.trim().isEmpty()) {
+            throw new IllegalArgumentException("Tema cannot be null or blank.");
+        }
+        if (lokacija == null || lokacija.trim().isEmpty()) {
+            throw new IllegalArgumentException("Lokacija cannot be null or blank.");
+        }
+        if (kompanija == null) {
+            throw new IllegalArgumentException("Kompanija cannot be null.");
+        }
+        if (administrator == null) {
+            throw new IllegalArgumentException("Administrator cannot be null.");
+        }
         this.sastanakID = sastanakID;
         this.datumVreme = datumVreme;
         this.tema = tema;
@@ -220,9 +239,13 @@ public class Sastanak extends AbstractDomainObject {
     /**
      * Set the date and time of the meeting.
      *
-     * @param datumVreme The date and time to set for the meeting.
+     * @param datumVreme The date and time to set for the meeting. Must not be null.
+     * @throws IllegalArgumentException If the provided datumVreme is null.
      */
     public void setDatumVreme(Date datumVreme) {
+        if (datumVreme == null) {
+            throw new IllegalArgumentException("DatumVreme cannot be null.");
+        }
         this.datumVreme = datumVreme;
     }
 
@@ -238,9 +261,13 @@ public class Sastanak extends AbstractDomainObject {
     /**
      * Set the topic of the meeting.
      *
-     * @param tema The topic to set for the meeting.
+     * @param tema The topic to set for the meeting. Must not be null or blank.
+     * @throws IllegalArgumentException If the provided tema is null or blank.
      */
     public void setTema(String tema) {
+        if (tema == null || tema.trim().isEmpty()) {
+            throw new IllegalArgumentException("Tema cannot be null or blank.");
+        }
         this.tema = tema;
     }
 
@@ -256,9 +283,13 @@ public class Sastanak extends AbstractDomainObject {
     /**
      * Set the location of the meeting.
      *
-     * @param lokacija The location to set for the meeting.
+     * @param lokacija The location to set for the meeting. Must not be null or blank.
+     * @throws IllegalArgumentException If the provided lokacija is null or blank.
      */
     public void setLokacija(String lokacija) {
+        if (lokacija == null || lokacija.trim().isEmpty()) {
+            throw new IllegalArgumentException("Lokacija cannot be null or blank.");
+        }
         this.lokacija = lokacija;
     }
 
@@ -275,8 +306,12 @@ public class Sastanak extends AbstractDomainObject {
      * Set the company associated with the meeting.
      *
      * @param kompanija The company to set for the meeting.
+     * @throws IllegalArgumentException If the provided company is null.
      */
     public void setKompanija(Kompanija kompanija) {
+    	if (kompanija == null) {
+    		throw new IllegalArgumentException("Kompanija cannot be null.");
+		}
         this.kompanija = kompanija;
     }
 

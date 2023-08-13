@@ -145,9 +145,13 @@ public class Paket extends AbstractDomainObject {
     /**
      * Set the name of the package.
      *
-     * @param nazivPaketa The name to set for the package.
+     * @param nazivPaketa The name to set for the package. Must not be null or blank.
+     * @throws IllegalArgumentException If the provided name is null or blank.
      */
     public void setNazivPaketa(String nazivPaketa) {
+    	if (nazivPaketa == null || nazivPaketa.trim().isEmpty()) {
+            throw new IllegalArgumentException("Naziv paketa cannot be null or blank.");
+        }
         this.nazivPaketa = nazivPaketa;
     }
 
@@ -163,9 +167,13 @@ public class Paket extends AbstractDomainObject {
     /**
      * Set the price of the package.
      *
-     * @param cenaPaketa The price to set for the package.
+     * @param cenaPaketa The price to set for the package. Must be non-negative.
+     * @throws IllegalArgumentException If the provided price is negative.
      */
     public void setCenaPaketa(double cenaPaketa) {
+    	if (cenaPaketa < 0) {
+            throw new IllegalArgumentException("Cena paketa must be non-negative.");
+        }
         this.cenaPaketa = cenaPaketa;
     }
 

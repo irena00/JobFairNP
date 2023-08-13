@@ -64,8 +64,14 @@ public class Kompanija extends AbstractDomainObject {
      * @param adresa            The address of the company.
      * @param granaPrivrede     The industry sector of the company.
      * @param clanCRTima        The team member representing the company.
+     * @throws IllegalArgumentException If any of the provided attributes is null, blank, or invalid.
      */
     public Kompanija(Long kompanijaID, String PIB, String nazivKompanije, String adresa, String granaPrivrede, ClanCRTima clanCRTima) {
+    	if (kompanijaID == null || PIB == null || PIB.trim().isEmpty() || nazivKompanije == null || nazivKompanije.trim().isEmpty()
+                || adresa == null || adresa.trim().isEmpty() || granaPrivrede == null || granaPrivrede.trim().isEmpty()
+                || clanCRTima == null) {
+            throw new IllegalArgumentException("Invalid data for Kompanija");
+        }
         this.kompanijaID = kompanijaID;
         this.PIB = PIB;
         this.nazivKompanije = nazivKompanije;
@@ -171,9 +177,13 @@ public class Kompanija extends AbstractDomainObject {
     /**
      * Set the Tax Identification Number (PIB) of the company.
      *
-     * @param PIB The PIB (Tax Identification Number) to set for the company.
+     * @param PIB The PIB (Tax Identification Number) to set for the company. Must not be null or blank.
+     * @throws IllegalArgumentException If the provided PIB is null or blank.
      */
     public void setPIB(String PIB) {
+        if (PIB == null || PIB.trim().isEmpty()) {
+            throw new IllegalArgumentException("PIB cannot be null or blank.");
+        }
         this.PIB = PIB;
     }
 
@@ -189,9 +199,13 @@ public class Kompanija extends AbstractDomainObject {
     /**
      * Set the name of the company.
      *
-     * @param nazivKompanije The name to set for the company.
+     * @param nazivKompanije The name to set for the company. Must not be null or blank.
+     * @throws IllegalArgumentException If the provided name is null or blank.
      */
     public void setNazivKompanije(String nazivKompanije) {
+        if (nazivKompanije == null || nazivKompanije.trim().isEmpty()) {
+            throw new IllegalArgumentException("Naziv kompanije cannot be null or blank.");
+        }
         this.nazivKompanije = nazivKompanije;
     }
 
@@ -207,9 +221,13 @@ public class Kompanija extends AbstractDomainObject {
     /**
      * Set the address of the company.
      *
-     * @param adresa The address to set for the company.
+     * @param adresa The address to set for the company. Must not be null or blank.
+     * @throws IllegalArgumentException If the provided address is null or blank.
      */
     public void setAdresa(String adresa) {
+        if (adresa == null || adresa.trim().isEmpty()) {
+            throw new IllegalArgumentException("Adresa cannot be null or blank.");
+        }
         this.adresa = adresa;
     }
 
@@ -225,11 +243,15 @@ public class Kompanija extends AbstractDomainObject {
     /**
      * Set the industry sector of the company.
      *
-     * @param granaPrivrede The industry sector to set for the company.
+     * @param granaPrivrede The industry sector to set for the company. Must not be null or blank.
+     * @throws IllegalArgumentException If the provided industry sector is null or blank.
      */
     public void setGranaPrivrede(String granaPrivrede) {
+        if (granaPrivrede == null || granaPrivrede.trim().isEmpty()) {
+            throw new IllegalArgumentException("Grana privrede cannot be null or blank.");
+        }
         this.granaPrivrede = granaPrivrede;
-    }
+    }	
 
     /**
      * Get the team member representing the company.

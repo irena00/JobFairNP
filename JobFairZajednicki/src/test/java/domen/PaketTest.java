@@ -1,78 +1,95 @@
 package domen;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 class PaketTest {
 
-    @Test
-    void testValidConstructorAndGetters() {
-        Long paketID = 1L;
-        String nazivPaketa = "Basic Package";
-        double cenaPaketa = 1000.0;
+    private Paket paket;
 
-        Paket paket = new Paket(paketID, nazivPaketa, cenaPaketa);
+    @BeforeEach
+    void setUp() throws Exception {
+        paket = new Paket(1L, "Basic", 100.0);
+    }
 
-        assertEquals(paketID, paket.getPaketID());
-        assertEquals(nazivPaketa, paket.getNazivPaketa());
-        assertEquals(cenaPaketa, paket.getCenaPaketa());
+    @AfterEach
+    void tearDown() throws Exception {
+        paket = null;
     }
 
     @Test
-    void testConstructorWithNullValues() {
-        assertDoesNotThrow(() -> new Paket(null, null, 0.0));
+    public void testGetPaketID() {
+        assertEquals(1L, paket.getPaketID());
     }
 
     @Test
-    void testBlankNazivPaketa() {
-        assertThrows(IllegalArgumentException.class, () -> new Paket(1L, "", 1000.0));
+    public void testSetPaketID() {
+        Long newID = 2L;
+        paket.setPaketID(newID);
+        assertEquals(newID, paket.getPaketID());
     }
 
     @Test
-    void testNegativeCenaPaketa() {
-        assertThrows(IllegalArgumentException.class, () -> new Paket(1L, "Basic Package", -100.0));
+    public void testGetNazivPaketa() {
+        assertEquals("Basic", paket.getNazivPaketa());
     }
 
     @Test
-    void testSetters() {
-        Paket paket = new Paket(1L, "Basic Package", 1000.0);
-
-        assertDoesNotThrow(() -> paket.setPaketID(2L));
-        assertDoesNotThrow(() -> paket.setNazivPaketa("Advanced Package"));
-        assertDoesNotThrow(() -> paket.setCenaPaketa(1500.0));
-
-        assertDoesNotThrow(() -> paket.setPaketID(null));
-        assertDoesNotThrow(() -> paket.setNazivPaketa(null));
-
+    public void testSetNazivPaketa() {
+        assertThrows(IllegalArgumentException.class, () -> paket.setNazivPaketa(null));
         assertThrows(IllegalArgumentException.class, () -> paket.setNazivPaketa(""));
-
-        assertThrows(IllegalArgumentException.class, () -> paket.setCenaPaketa(-200.0));
+        assertThrows(IllegalArgumentException.class, () -> paket.setNazivPaketa("  "));
+        
+        String newName = "Advanced";
+        paket.setNazivPaketa(newName);
+        assertEquals(newName, paket.getNazivPaketa());
     }
 
     @Test
-    void testToString() {
-       
-        Paket paket = new Paket(1L, "Advanced Package", 2000.0);
-
-        
-        assertEquals("Advanced Package (Cena: 2000.0din)", paket.toString());
+    public void testGetCenaPaketa() {
+        assertEquals(100.0, paket.getCenaPaketa(), 0.001);
     }
 
     @Test
-    void testAbstractMethods() {
-       
-        Paket paket = new Paket();
-
+    public void testSetCenaPaketa() {
+        assertThrows(IllegalArgumentException.class, () -> paket.setCenaPaketa(-50.0));
         
-        assertEquals(" Paket ", paket.nazivTabele());
-        assertEquals(" p ", paket.alijas());
-        assertEquals("", paket.join());
-        assertEquals("", paket.koloneZaInsert());
-        assertEquals("", paket.vrednostZaPrimarniKljuc());
-        assertEquals("", paket.vrednostiZaInsert());
-        assertEquals("", paket.vrednostiZaUpdate());
-        assertEquals("", paket.uslov());
+        double newPrice = 150.0;
+        paket.setCenaPaketa(newPrice);
+        assertEquals(newPrice, paket.getCenaPaketa(), 0.001);
+    }
+    
+    @Test
+    public void testSetCenaPaketaNegative() {
+        assertThrows(IllegalArgumentException.class, () -> paket.setCenaPaketa(-50.0));
+    }
+
+    @Test
+    public void testToString() {
+        assertEquals("Basic (Cena: 100.0din)", paket.toString());
+    }
+
+    @Test
+    public void testEqualsSameInstance() {
+        assertEquals(paket, paket);
+    }
+
+    @Test
+    public void testEqualsNull() {
+        assertNotEquals(paket, null);
+    }
+
+    @Test
+    public void testEqualsDifferentClass() {
+        assertNotEquals(paket, "Basic");
+    }
+
+
+    @Test
+    public void testEqualsDifferentId() {
+        Paket other = new Paket(2L, "Basic", 100.0);
+        assertNotEquals(paket, other);
     }
 }

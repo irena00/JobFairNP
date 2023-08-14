@@ -152,8 +152,12 @@ public class StavkaUgovora extends AbstractDomainObject {
      * Sets the contract (Ugovor) to which this item belongs.
      *
      * @param ugovor The contract (Ugovor) to associate with this contract item.
+     * @throws IllegalArgumentException if Ugovor is null
      */
     public void setUgovor(Ugovor ugovor) {
+    	if (ugovor == null) {
+			throw new IllegalArgumentException("Ugovor ne sme niti null");
+		}
         this.ugovor = ugovor;
     }
 
@@ -188,8 +192,12 @@ public class StavkaUgovora extends AbstractDomainObject {
      * Sets the description/name of the contract item.
      *
      * @param nazivStavke The description/name to set for the contract item.
+     * @throws IllegalArgumentException if nazivStavke is empty.
      */
     public void setNazivStavke(String nazivStavke) {
+    	if (nazivStavke == "") {
+			throw new IllegalArgumentException("Naziv stavke ne može biti prazan string");
+		}
         this.nazivStavke = nazivStavke;
     }
 
@@ -206,8 +214,12 @@ public class StavkaUgovora extends AbstractDomainObject {
      * Sets the price/cost of the contract item.
      *
      * @param cenaStavke The price/cost to set for the contract item.
+     * @throws IllegalArgumentException Price can not be negative.
      */
     public void setCenaStavke(double cenaStavke) {
+    	if (cenaStavke < 0) {
+			throw new IllegalArgumentException("Cena ne sme biti negativna");
+		}
         this.cenaStavke = cenaStavke;
     }
 

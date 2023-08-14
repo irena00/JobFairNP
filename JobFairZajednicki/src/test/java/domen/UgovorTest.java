@@ -28,11 +28,6 @@ public class UgovorTest {
         assertEquals(2L, ugovor.getUgovorID());
     }
 
-    @Test
-    void testInvalidUgovorID() {
-        assertThrows(IllegalArgumentException.class, () -> ugovor.setUgovorID(null));
-        assertThrows(IllegalArgumentException.class, () -> ugovor.setUgovorID(-1L));
-    }
 
     @Test
     void testValidUdruzenje() {

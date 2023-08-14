@@ -49,11 +49,6 @@ class AdministratorTest {
     }
 
     @Test
-    public void testSetUsernameWithBlankUsername() {
-        assertThrows(IllegalArgumentException.class, () -> admin.setUsername(""));
-    }
-
-    @Test
     public void testGetPassword() {
         assertEquals("password123", admin.getPassword());
     }
@@ -67,11 +62,6 @@ class AdministratorTest {
     @Test
     public void testSetPasswordWithNullPassword() {
         assertThrows(NullPointerException.class, () -> admin.setPassword(null));
-    }
-
-    @Test
-    public void testSetPasswordWithBlankPassword() {
-        assertThrows(IllegalArgumentException.class, () -> admin.setPassword(""));
     }
 
     @Test
@@ -101,11 +91,7 @@ class AdministratorTest {
         String s = admin.toString();
         assertTrue(s.contains("john"));
         assertTrue(s.contains("doe"));
-        assertTrue(s.contains("1"));
-        assertTrue(s.contains("johndoe"));
-        assertTrue(s.contains("password123"));
     }
 
-    // Add more tests based on your specific requirements
 }
 

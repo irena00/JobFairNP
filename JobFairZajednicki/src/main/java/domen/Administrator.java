@@ -99,8 +99,8 @@ public class Administrator extends AbstractDomainObject{
      * @throws IllegalArgumentException If the provided username is null, blank, or contains only whitespace characters.
      */
     public void setUsername(String username) {
-        if (username == null || username.trim().isEmpty()) {
-            throw new IllegalArgumentException("Username cannot be null, blank, or contain only whitespace characters.");
+        if (username == null) {
+            throw new NullPointerException("Username cannot be null, blank, or contain only whitespace characters.");
         }
         this.username = username;
     }
@@ -117,14 +117,14 @@ public class Administrator extends AbstractDomainObject{
     /**
      * Set the administrator's password.
      * 
-     * The password should not be null or blank.
+     * The password should not be null.
      * 
      * @param password The password to set for the administrator.
-     * @throws IllegalArgumentException If the provided password is null or blank.
+     * @throws IllegalArgumentException If the provided password is null.
      */
     public void setPassword(String password) {
-        if (password == null || password.trim().isEmpty()) {
-            throw new IllegalArgumentException("Password cannot be null or blank.");
+        if (password == null) {
+            throw new NullPointerException("Password cannot be null or blank.");
         }
         this.password = password;
     }

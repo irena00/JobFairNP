@@ -13,6 +13,7 @@ import domen.Administrator;
 import domen.Paket;
 import domen.Sastanak;
 import domen.StavkaUgovora;
+import domen.Udruzenje;
 import domen.Ugovor;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -430,12 +431,14 @@ public class MainForm extends javax.swing.JFrame {
             }
 
             String udruzenje = (String) cmbUdruzenje.getSelectedItem();
+            Udruzenje udruzenjeEnum = Udruzenje.valueOf(udruzenje.toUpperCase());
+            
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
             Date datumZakljucenja = sdf.parse(txtDatumZakljucenja.getText());
 
             TableModelStavke tm = (TableModelStavke) tblStavke.getModel();
 
-            Ugovor u = new Ugovor(null, udruzenje, ukupnaCena,
+            Ugovor u = new Ugovor(null, udruzenjeEnum, ukupnaCena,
                     datumZakljucenja, sastanak, paket, tm.getLista());
 
             ClientController.getInstance().addUgovor(u);

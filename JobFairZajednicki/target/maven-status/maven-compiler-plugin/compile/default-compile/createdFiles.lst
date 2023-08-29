@@ -5,6 +5,7 @@ transfer\Response.class
 domen\Sastanak.class
 domen\Administrator.class
 domen\Kompanija.class
+domen\Udruzenje.class
 transfer\Request.class
 domen\Ugovor.class
 transferUtil\ResponseStatus.class

@@ -12,8 +12,8 @@ public class UgovorTest {
 
     @BeforeEach
     void setUp() {
-        ArrayList<StavkaUgovora> stavkeUgovora = new ArrayList<>();
-        ugovor = new Ugovor(1L, "Example Udruzenje", 1000.0, new Date(), new Sastanak(), new Paket(), stavkeUgovora);
+    	ArrayList<StavkaUgovora> stavkeUgovora = new ArrayList<>();
+        ugovor = new Ugovor(1L, Udruzenje.BEST, 1000.0, new Date(), new Sastanak(), new Paket(), stavkeUgovora);
     }
 
     @AfterEach
@@ -28,18 +28,16 @@ public class UgovorTest {
         assertEquals(2L, ugovor.getUgovorID());
     }
 
-
     @Test
     void testValidUdruzenje() {
-        ugovor.setUdruzenje("Updated Udruzenje");
+        ugovor.setUdruzenje(Udruzenje.EESTEC);
 
-        assertEquals("Updated Udruzenje", ugovor.getUdruzenje());
+        assertEquals(Udruzenje.EESTEC, ugovor.getUdruzenje());
     }
 
     @Test
     void testInvalidUdruzenje() {
         assertThrows(IllegalArgumentException.class, () -> ugovor.setUdruzenje(null));
-        assertThrows(IllegalArgumentException.class, () -> ugovor.setUdruzenje(""));
     }
 
     @Test

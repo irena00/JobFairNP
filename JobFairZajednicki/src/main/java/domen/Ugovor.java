@@ -18,35 +18,35 @@ import java.util.Date;
 public class Ugovor extends AbstractDomainObject {
 
 	/**
-	 * The unique identifier for the contract.
-	 */
-    private Long ugovorID;
-    
-    /**
-     * The name of the association involved in the contract.
+     * The unique identifier for the contract.
      */
-    private String udruzenje;
-    
+    private Long ugovorID;
+
+    /**
+     * The student organization involved in the contract.
+     */
+    private Udruzenje udruzenje;
+
     /**
      * The total cost of the contract.
      */
     private double ukupnaCena;
-    
+
     /**
      * The date when the contract was concluded.
      */
     private Date datumZakljucenja;
-    
+
     /**
      * The meeting associated with the contract.
      */
     private Sastanak sastanak;
-    
+
     /**
-     * 	The package associated with the contract.
+     *  The package associated with the contract.
      */
     private Paket paket;
-    
+
     /**
      * The list of contract items (stavkeUgovora) associated with the contract.
      */
@@ -56,7 +56,7 @@ public class Ugovor extends AbstractDomainObject {
      * Constructs a new Ugovor object with the specified attributes.
      *
      * @param ugovorID         The unique identifier for the contract.
-     * @param udruzenje        The name of the association involved in the contract. Must not be null or blank.
+     * @param udruzenje        The student organization involved in the contract.
      * @param ukupnaCena       The total cost of the contract.
      * @param datumZakljucenja The date when the contract was concluded.
      * @param sastanak         The meeting associated with the contract.
@@ -64,12 +64,12 @@ public class Ugovor extends AbstractDomainObject {
      * @param stavkeUgovora    The list of contract items (stavkeUgovora) associated with the contract.
      * @throws IllegalArgumentException If any of the provided attributes are invalid.
      */
-    public Ugovor(Long ugovorID, String udruzenje, double ukupnaCena, Date datumZakljucenja, Sastanak sastanak, Paket paket, ArrayList<StavkaUgovora> stavkeUgovora) {
+    public Ugovor(Long ugovorID, Udruzenje udruzenje, double ukupnaCena, Date datumZakljucenja, Sastanak sastanak, Paket paket, ArrayList<StavkaUgovora> stavkeUgovora) {
         if (ugovorID == null || ugovorID < 0) {
             throw new IllegalArgumentException("UgovorID cannot be null or negative.");
         }
-        if (udruzenje == null || udruzenje.trim().isEmpty()) {
-            throw new IllegalArgumentException("Udruzenje cannot be null or blank.");
+        if (udruzenje == null) {
+            throw new IllegalArgumentException("Udruzenje cannot be null.");
         }
         if (datumZakljucenja == null) {
             throw new IllegalArgumentException("DatumZakljucenja cannot be null.");
@@ -137,7 +137,9 @@ public class Ugovor extends AbstractDomainObject {
             Sastanak s = new Sastanak(rs.getLong("sastanakID"), rs.getTimestamp("datumVreme"),
                     rs.getString("tema"), rs.getString("lokacija"), k, a);
 
-            Ugovor u = new Ugovor(rs.getLong("ugovorID"), rs.getString("udruzenje"),
+            Udruzenje udruzenje = Udruzenje.valueOf(rs.getString("udruzenje"));
+
+            Ugovor u = new Ugovor(rs.getLong("ugovorID"), udruzenje,
                     rs.getDouble("ukupnaCena"), rs.getDate("datumZakljucenja"), s, p, null);
 
             lista.add(u);
@@ -196,25 +198,24 @@ public class Ugovor extends AbstractDomainObject {
     public void setUgovorID(Long ugovorID) {
         this.ugovorID = ugovorID;
     }
-
     /**
-     * Gets the name of the association involved in the contract.
+     * Gets the student organization involved in the contract.
      * 
-     * @return The name of the association.
+     * @return The student organization.
      */
-    public String getUdruzenje() {
+    public Udruzenje getUdruzenje() {
         return udruzenje;
     }
 
     /**
-     * Sets the name of the association involved in the contract.
+     * Sets the student organization involved in the contract.
      *
-     * @param udruzenje The name of the association to set. Must not be null or blank.
-     * @throws IllegalArgumentException If the provided udruzenje is null or blank.
+     * @param udruzenje The student organization to set. Must not be null.
+     * @throws IllegalArgumentException If the provided udruzenje is null.
      */
-    public void setUdruzenje(String udruzenje) {
-        if (udruzenje == null || udruzenje.trim().isEmpty()) {
-            throw new IllegalArgumentException("Udruzenje cannot be null or blank.");
+    public void setUdruzenje(Udruzenje udruzenje) {
+        if (udruzenje == null) {
+            throw new IllegalArgumentException("Udruzenje cannot be null.");
         }
         this.udruzenje = udruzenje;
     }

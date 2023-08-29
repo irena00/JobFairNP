@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * database interaction.
  *
  * @see AbstractDomainObject
- * @author Korisnik
+ * @author Irena Randjelovic
  */
 public class StavkaUgovora extends AbstractDomainObject {
 
@@ -100,7 +100,9 @@ public class StavkaUgovora extends AbstractDomainObject {
             Sastanak s = new Sastanak(rs.getLong("sastanakID"), rs.getTimestamp("datumVreme"),
                     rs.getString("tema"), rs.getString("lokacija"), k, a);
 
-            Ugovor u = new Ugovor(rs.getLong("ugovorID"), rs.getString("udruzenje"),
+            Udruzenje udruzenje = Udruzenje.valueOf(rs.getString("udruzenje"));
+
+            Ugovor u = new Ugovor(rs.getLong("ugovorID"), udruzenje,
                     rs.getDouble("ukupnaCena"), rs.getDate("datumZakljucenja"), s, p, null);
 
             StavkaUgovora su = new StavkaUgovora(u, rs.getInt("rbStavke"),

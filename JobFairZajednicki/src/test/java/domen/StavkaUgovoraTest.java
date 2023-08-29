@@ -21,7 +21,8 @@ class StavkaUgovoraTest {
     	kompanija = new Kompanija(1L, "123456789", "Company", "Address", "IT", new ClanCRTima(1L, "John", "Doe", "john@example.com", "1234567890"));
         administrator = new Administrator(1L, "Admin", "User", "admin", "password");
         sastanak = new Sastanak(1L, new Date(), "Meeting Topic", "Meeting Room", kompanija, administrator);
-        ugovor = new Ugovor(2L, "BEST", 0, new Date(), sastanak, paket, null);
+        paket = new Paket(3L, "Promo paket", 100000.00);
+        ugovor = new Ugovor(2L, Udruzenje.BEST, 0, new Date(), sastanak, paket, null);
         stavkaUgovora = new StavkaUgovora(ugovor, 1, "Stavka", 30000.00);
     }
 

@@ -75,10 +75,6 @@ public class UgovorTest {
         assertEquals(sastanak, ugovor.getSastanak());
     }
 
-    @Test
-    void testInvalidSastanak() {
-        assertThrows(IllegalArgumentException.class, () -> ugovor.setSastanak(null));
-    }
 
     @Test
     void testValidPaket() {

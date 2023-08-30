@@ -276,13 +276,9 @@ public class Ugovor extends AbstractDomainObject {
     /**
      * Sets the meeting associated with the contract.
      *
-     * @param sastanak The Sastanak (meeting) object to associate with the contract. Must not be null.
-     * @throws IllegalArgumentException If the provided sastanak is null.
+     * @param sastanak The Sastanak (meeting) object to associate with the contract.
      */
     public void setSastanak(Sastanak sastanak) {
-        if (sastanak == null) {
-            throw new IllegalArgumentException("Sastanak cannot be null.");
-        }
         this.sastanak = sastanak;
     }
     /**

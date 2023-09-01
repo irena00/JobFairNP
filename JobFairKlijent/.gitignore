@@ -1,18 +1,5 @@
-# Ignoriši target direktorijum (generisane klase i artefakti)
+/.classpath
+/.project
+/.settings/
 /target/
-
-# Ignoriši IDE specifične datoteke i direktorijume za Eclipse
-.classpath
-.project
-.settings/
-
-# Ignoriši Eclipse direktorijum za generisane resurse
-/bin/
-
-# Ignoriši IntelliJ IDEA specifične datoteke i direktorijume
-.idea/
-
-# Ignoriši Maven specifične datoteke
-mvnw
-mvnw.cmd
-.mvn/
+/.gitignore

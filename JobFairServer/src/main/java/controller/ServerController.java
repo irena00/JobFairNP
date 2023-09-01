@@ -13,6 +13,7 @@ import domen.Sastanak;
 import domen.StavkaUgovora;
 import domen.Ugovor;
 import java.util.ArrayList;
+
 import so.administrator.SOGetAllAdministrator;
 import so.clanCRTima.SOGetAllClanCRTima;
 import so.kompanija.SOGetAllKompanija;
@@ -35,7 +36,6 @@ import so.ugovor.SOUpdateUgovor;
 public class ServerController {
 
     private static ServerController instance;
-
     private ServerController() {
     }
 

@@ -7,11 +7,14 @@ package thread;
 
 import controller.ServerController;
 import domen.Administrator;
+import domen.Paket;
 import domen.Sastanak;
 import domen.Ugovor;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+
 import transfer.Request;
 import transfer.Response;
 import transferUtil.ResponseStatus;
@@ -24,7 +27,6 @@ import transferUtil.Operation;
 public class ThreadClient extends Thread {
 
     private Socket socket;
-
     ThreadClient(Socket socket) {
         this.socket = socket;
     }
